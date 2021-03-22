@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+option csharp_namespace = "CNATema1";
+import "google/protobuf/empty.proto";
+
+package persongroup;
+
+service Persongroup{
+	rpc AddPerson(AddPersonRequest) returns (AddPersonResponse);
+	rpc GetAllPersons(google.protobuf.Empty) returns (GetAllPersonsResponse);
+}
+
+message AddPersonRequest{
+	Person person = 1;
+}
+
+message AddPersonResponse{
+	Status status=1;
+
+	enum Status{
+		SUCCES=0;
+		ERROR=1;
+	}
+}
+
+message GetAllPersonsResponse{
+	repeated Person persons=1;
+}
+
+message Person{
+	string name =1;
+	string cnp =2;
+	string birthYear=3;
+	string gender=4;
+}
